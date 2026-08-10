@@ -163,6 +163,19 @@ python3 story-video-director/scripts/validate_project.py --json /absolute/path/t
 - [`story-video-director/references/`](story-video-director/references/)：导演、素材生成、Seedance 与交付规范
 - [`story-video-director/scripts/validate_project.py`](story-video-director/scripts/validate_project.py)：项目检查器
 - [`story-video-director/agents/openai.yaml`](story-video-director/agents/openai.yaml)：Codex 界面元数据
+- [`reference-materials/`](reference-materials/)：创作过程中参考的相关文本与 PDF，不属于 Skill 运行依赖
+
+## 参考文本
+
+仓库同时保留了项目设计和研究过程中使用的参考资料，方便理解提示词方法、人物表演、画面生成和 Seedance 工作流：
+
+- [ACTING SKILL.md](reference-materials/ACTING%20SKILL.md)：AI 视频人物行为与表演设计参考
+- [LIRA SKILL.md](reference-materials/LIRA%20SKILL.md)：图片提示词优化方法参考
+- [CINEDANCE HIGGSFIELD SKILL.md](reference-materials/CINEDANCE%20HIGGSFIELD%20SKILL.md)：Seedance 与 Higgsfield 导演提示词参考
+- [视频提示词建议.md](reference-materials/%E8%A7%86%E9%A2%91%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%BB%BA%E8%AE%AE.md)：中文视频提示词与分镜建议
+- [prompt-guide-v1-2.pdf](reference-materials/prompt-guide-v1-2.pdf)：提示词指南 PDF
+
+这些文件按原始文件名和内容收录，用作相关文本参考；它们不会在安装 Skill 时自动进入运行上下文。参考资料的署名与权利归原作者或原权利人所有，除非文件自身另有声明，不视为由本仓库 MIT License 重新授权。
 
 ## 设计原则
 
@@ -180,5 +193,4 @@ python3 story-video-director/scripts/validate_project.py --json /absolute/path/t
 
 ## License
 
-[MIT License](LICENSE)
-
+本项目代码与原创 Skill 文件采用 [MIT License](LICENSE)。`reference-materials/` 中的外部参考资料不包含在该授权范围内，具体以原资料声明为准。
