@@ -14,6 +14,7 @@
 - 根据内容密度判断最佳总时长，不强行压缩成 15 秒
 - 将完整故事拆成多个独立视频片段，每段不超过 15 秒
 - 设计角色、服装、场景、道具、怪物、变身状态和关键帧
+- 默认生成“正面全身＋严格侧面＋背面全身＋脸部特写”的四视图角色身份图，增强真人角色与视频连续性
 - 调用 Codex 的 ImageGen 能力实际生成并保存图片素材
 - 为每段生成包含运镜、动作、对白、旁白、音效、环境声和音乐的中文提示词
 - 在每段可复制提示词中自动加入 `角色名@filename.png` 形式的素材引用
@@ -42,6 +43,28 @@
 ```
 
 默认采用“自动导演模式”：除非缺少的信息会显著改变项目，否则不会用一长串问题打断制作。
+
+## 四视图角色身份锚点
+
+对需要反复出镜的真人角色、怪物或变身状态，Skill 默认生成一张横向四视图身份图：
+
+1. 正面全身；
+2. 严格 90° 侧面全身；
+3. 严格 180° 背面全身；
+4. 同一角色的脸部特写。
+
+提示词会具体锁定年龄、脸型、体型、发型轮廓、完整服装、鞋子、配饰、疤痕、纹身、武器位置，以及尾巴、触角、鹿角或第三只眼等特殊结构。角色图使用干净的中性影棚背景，不把故事场景混入身份素材。
+
+后续视频提示词会自动加入排除规则，防止模型把四视图误解成四个人：
+
+```text
+角色参考@character-identity-sheet.png：
+严格继承面孔身份、年龄、体型、发型、完整服装、鞋子、配饰和固定道具结构；
+只提取角色设定，不要继承浅灰影棚背景、四视图并排结构、分栏接缝、
+正侧背重复人物和中性站姿。
+```
+
+详细生成规范与英文 ImageGen 模板见 [`character-identity-sheets.md`](story-video-director/references/character-identity-sheets.md)。
 
 ## 安装
 
@@ -161,6 +184,7 @@ python3 story-video-director/scripts/validate_project.py --json /absolute/path/t
 
 - [`story-video-director/SKILL.md`](story-video-director/SKILL.md)：Skill 主工作流
 - [`story-video-director/references/`](story-video-director/references/)：导演、素材生成、Seedance 与交付规范
+- [`character-identity-sheets.md`](story-video-director/references/character-identity-sheets.md)：真人四视图角色身份图、详细提示词模板与一致性验收规范
 - [`story-video-director/scripts/validate_project.py`](story-video-director/scripts/validate_project.py)：项目检查器
 - [`story-video-director/agents/openai.yaml`](story-video-director/agents/openai.yaml)：Codex 界面元数据
 - [`reference-materials/`](reference-materials/)：创作过程中参考的相关文本与 PDF，不属于 Skill 运行依赖

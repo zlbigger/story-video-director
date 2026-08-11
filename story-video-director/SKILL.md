@@ -78,7 +78,7 @@ Use the built-in image-generation capability for real raster assets when availab
 
 Generate only what the production needs:
 
-- identity anchors for recurring characters;
+- identity anchors for recurring characters; default to a four-view identity sheet containing front full body, strict side full body, back full body, and a close-up portrait when identity continuity matters;
 - creature or transformation states;
 - reusable location plates;
 - critical props;
@@ -87,7 +87,7 @@ Generate only what the production needs:
 
 Save every selected final asset into the project directory with stable ASCII filenames. Inspect important outputs and regenerate a single failed property when identity, costume, anatomy, composition, or continuity is wrong.
 
-Read [references/asset-generation.md](references/asset-generation.md) before creating or referencing image assets.
+Read [references/asset-generation.md](references/asset-generation.md) before creating or referencing image assets. Read [references/character-identity-sheets.md](references/character-identity-sheets.md) before generating recurring human, creature, or transformed-character identity anchors.
 
 ### 6. Bind every reference explicitly
 
@@ -188,6 +188,7 @@ Do not make the user reconstruct references or combine separate sound and pictur
 - Never overload spoken audio; spoken Chinese should normally stay at or below roughly 4–4.5 characters per second, including pauses.
 - Never treat a storyboard sheet as finished-film visual style.
 - Never allow a multi-panel character sheet background or grid to become the scene.
+- Never use a recurring-character sheet without explicitly excluding its studio background, multi-view layout, panel seams, and neutral reference pose in every consuming video prompt.
 - Never omit an explicit final frame.
 - Never invent on-screen text unless the user requested it.
 - Never claim an image or video was generated unless the artifact exists.
@@ -197,7 +198,7 @@ Do not make the user reconstruct references or combine separate sound and pictur
 - [references/directing-and-runtime.md](references/directing-and-runtime.md): runtime math, dramatic beats, clip splitting, camera choices.
 - [references/seedance-reference-rules.md](references/seedance-reference-rules.md): 2.0/2.5 budgets, upload order, reference roles, exclusions.
 - [references/asset-generation.md](references/asset-generation.md): image asset strategy, filenames, identity and continuity QA.
+- [references/character-identity-sheets.md](references/character-identity-sheets.md): four-view character identity sheets, detailed ImageGen prompt structure, consistency rules, and reference exclusions.
 - [references/chinese-video-prompt-template.md](references/chinese-video-prompt-template.md): copy-ready Chinese prompt structure and audio syntax.
 - [references/delivery-contract.md](references/delivery-contract.md): project structure, manifest, API job schema, final QA.
 - `scripts/validate_project.py`: deterministic delivery validator.
-

@@ -33,6 +33,17 @@ Define each recurring person with:
 
 Repeat invariants in every generation prompt. Use a neutral background for identity assets. Avoid text and labels.
 
+When facial identity and costume continuity matter, default to one four-view identity sheet per recurring character:
+
+1. front full-body view;
+2. strict 90-degree side full-body view;
+3. strict 180-degree back full-body view;
+4. close-up portrait of the same identity.
+
+Keep the three full-body figures equal in height and scale, align their head and foot levels, and keep the close-up unmistakably the same performer. Describe facial anatomy, apparent age, body proportions, hair geometry, every garment layer, footwear, accessories, scars, tattoos, creature anatomy, and prop attachment in concrete language. Require those properties to remain identical across all views.
+
+Read [character-identity-sheets.md](character-identity-sheets.md) for the reusable prompt structure, neutral-studio specification, creature adaptations, quality gates, and video-reference exclusions.
+
 For copyrighted or restricted likeness requests, preserve the requested genre function while creating an original identity, wardrobe, marks, and title. State the adaptation to the user.
 
 ## 3. Locations and props
@@ -77,6 +88,9 @@ Inspect:
 - location geometry and light direction;
 - final-frame composition;
 - accidental logos, text, watermarks, panel borders, or grids.
+- front/side/back accuracy and whether the close-up is the same identity;
+- equal scale and aligned feet across full-body views;
+- correct side for scars, closed eyes, earrings, tattoos, wrist devices, weapons, and utility pouches;
+- stable hair silhouette, braid length, tail or antenna attachment, and carried-prop placement.
 
 Regenerate with one targeted correction rather than rewriting every property.
-
