@@ -28,8 +28,10 @@ Use only the `METASO_API_KEY` environment variable. Never add a command-line `--
 If the variable is absent:
 
 1. tell the user to obtain or manage a key at [metaso.cn/minimax-h3](https://metaso.cn/minimax-h3);
-2. ask them to configure it locally, not paste it into a project file;
-3. suggest a temporary shell session:
+2. explain how to identify the credential in the provider example: in `Authorization: Bearer mk-xxxxx`, use only `mk-xxxxx`, which is the token after `Bearer`;
+3. do not include the `Authorization:` label, the word `Bearer`, quotation marks, headers, JSON, or the rest of a curl command;
+4. ask them to configure it locally, not paste it into a project file;
+5. suggest a temporary shell session:
 
 ```bash
 read -s METASO_API_KEY
@@ -38,9 +40,34 @@ export METASO_API_KEY
 
 The input remains hidden. The variable lasts only for that shell session. A persistent secret manager or OS keychain is preferable for repeated use.
 
+Use this concise user-facing request when appropriate:
+
+```text
+请到 https://metaso.cn/minimax-h3 获取 API Key。在接口示例的
+Authorization: Bearer mk-xxxxx 中，只需要 Bearer 后面的 mk-xxxxx。
+请优先在终端用隐藏输入配置 METASO_API_KEY；不要粘贴完整 curl、Authorization 请求头或项目文件。
+```
+
+If the user explicitly chooses to enter the token in chat, request only the `mk-...` value. Do not repeat or quote it in commentary, tool output, or the final response. Use it only for the authorized execution, do not save it, and advise rotation when the token was exposed in public text, screenshots, logs, repositories, or shared chat.
+
 Never print the key, authorization header, environment dump, or request object containing credentials. Never write credentials into `api-jobs.json`, `render-state.json`, `.env`, README examples, logs, or Git commits.
 
 If a user posts a key in chat, use it only transiently when authorized, do not persist it, and recommend rotating it afterward.
+
+## Other video providers
+
+When the user selects a provider other than Metaso MiniMax-H3, ask them to paste or link the relevant API documentation. Do not ask for a live key until the adapter requirements are understood. The minimum useful documentation is:
+
+- submission URL and HTTP method;
+- authentication header or signing method, with credentials redacted;
+- request JSON schema and model name;
+- supported image input methods, roles, sizes, and formats;
+- duration, aspect ratio, resolution, frame rate, and reference limits;
+- asynchronous task ID response and query endpoint;
+- success, failure, moderation, and insufficient-balance examples;
+- final video URL or download response field.
+
+Ask the user to replace real secrets with placeholders such as `YOUR_API_KEY` or `mk-xxxxx`. After an adapter is prepared and validated with a dry run, obtain the actual credential through an environment variable or secret manager. Preserve the same rules: explicit approval before paid jobs, no secrets in files or logs, sequential submission by default, and no undisclosed fallback clips.
 
 ## 3. First-frame design
 

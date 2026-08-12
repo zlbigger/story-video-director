@@ -212,6 +212,14 @@ read -s METASO_API_KEY
 export METASO_API_KEY
 ```
 
+Key 的识别方式很简单：如果 Metaso 的 API 示例中写着：
+
+```text
+Authorization: Bearer mk-xxxxx
+```
+
+只需要输入 `Bearer` 后面的 `mk-xxxxx`。不要输入 `Authorization:`、`Bearer`、引号，也不要粘贴整段 curl。优先使用上面的终端隐藏输入；如果选择在对话中临时提供，也只提供 `mk-...` 本身，Skill 不会复述、写入项目或提交到 Git。
+
 然后执行：
 
 ```bash
@@ -226,6 +234,8 @@ python3 story-video-director/scripts/metaso_h3_video.py /absolute/path/to/projec
 - 不要把 Key 写进 `.env`、JSON、提示词、脚本、命令示例或 Git；
 - 不打印 Authorization 请求头，不在 `render-state.json` 保存凭证；
 - 如果 Key 曾公开粘贴到聊天、日志或代码中，应立即到服务商处轮换。
+
+如果使用其他视频生成 API，请直接提供该服务的文档链接或粘贴脱敏后的相关文档，至少包括：提交接口、鉴权格式、请求体、图片输入方式、时长与分辨率限制、任务查询接口、成功/失败响应，以及最终视频下载字段。示例中的真实 Key 请替换成 `YOUR_API_KEY`；Skill 会先据此适配和 dry-run，不会猜测接口，也不会在尚未确认执行方式时要求真实凭证。
 
 ## 目录说明
 

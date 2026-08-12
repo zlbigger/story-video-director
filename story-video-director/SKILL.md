@@ -162,7 +162,9 @@ Before submitting any paid job:
 5. never request that the user paste a key into project files, never write the key to disk, and never include it in logs, manifests, commands shown in the final response, or Git history;
 6. submit, poll, download, normalize, concatenate, and verify with `scripts/metaso_h3_video.py`.
 
-If `METASO_API_KEY` is missing, direct the user to [metaso.cn/minimax-h3](https://metaso.cn/minimax-h3) and give environment-variable setup guidance. Do not fall back to embedding a key in source code or a curl example.
+If `METASO_API_KEY` is missing, direct the user to [metaso.cn/minimax-h3](https://metaso.cn/minimax-h3) and explain exactly what value is needed: from an API example such as `Authorization: Bearer mk-xxxxx`, the credential is only the token after `Bearer`, such as `mk-xxxxx`; do not include `Authorization:`, `Bearer`, quotes, or surrounding curl syntax. Prefer hidden terminal input into the environment variable. If the user chooses to provide the token in chat, ask for the token only, never echo it back, use it only for the explicitly authorized run, never persist it, and recommend rotation if it has been exposed anywhere public.
+
+If the user wants another video provider, ask them to paste or link its relevant API documentation rather than guessing the integration. Request the submission endpoint and method, authentication format, request body, image upload or URL rules, duration and resolution limits, asynchronous task query endpoint, success/failure response examples, and result download field. Tell them to redact live credentials from documentation samples. Adapt the provider only after these details are known; keep the same paid-action gate and secret-handling rules.
 
 For multiple clips, preserve narrative order and use the previous clip's planned final composition as the next clip's first-frame design when continuity matters. Each submitted clip remains 15 seconds or shorter. Read [references/metaso-minimax-h3.md](references/metaso-minimax-h3.md) before preparing or executing jobs.
 
@@ -213,6 +215,7 @@ Do not make the user reconstruct references or combine separate sound and pictur
 - Never claim an image or video was generated unless the artifact exists.
 - Never submit a paid video job without an explicit user request to generate video.
 - Never store or print `METASO_API_KEY`, bearer tokens, or provider credentials.
+- Never ask for a full authenticated curl command when only the token or redacted API documentation is needed.
 - Never pretend that identity sheets or other images were uploaded to MiniMax-H3 when only the declared `first_frame` was sent.
 - Never silently replace a failed provider-generated clip with an edited, duplicated, or still-image-derived segment; disclose and obtain user agreement for a fallback.
 
