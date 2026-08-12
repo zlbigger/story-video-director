@@ -13,10 +13,12 @@
 project-name/
 ├── assets/
 ├── prompts/
+├── output/
 ├── 00-director-brief.md
 ├── 01-production-timeline.md
 ├── project-manifest.json
-└── api-jobs.json
+├── api-jobs.json
+└── render-state.json       # created only after API execution
 ```
 
 The director brief records story interpretation, visual bible, sound world, and intentional assumptions. The timeline records clip duration, narrative function, assets, and transitions.
@@ -62,9 +64,10 @@ Use paths relative to the project directory. Total duration must equal the sum o
       "duration_seconds": 10,
       "aspect_ratio": "16:9",
       "fps": 24,
+      "resolution": "2K",
       "prompt_file": "prompts/clip-01.md",
       "references": [
-        {"type": "image", "path": "assets/characters/lead.png", "slot": 1}
+        {"type": "image", "path": "assets/shots/clip-01-first-frame.png", "role": "first_frame", "slot": 1}
       ]
     }
   ]
@@ -72,6 +75,10 @@ Use paths relative to the project directory. Total duration must equal the sum o
 ```
 
 Do not include provider credentials. A future adapter may translate this manifest into an API request.
+
+For Metaso MiniMax-H3 execution, each job must contain exactly one local image reference with `role: "first_frame"`. This image must be a finished cinematic frame, not a character sheet, storyboard grid, or empty location plate. The renderer sends the fenced prompt body plus this one first frame. Other references remain production sources and are not implicitly uploaded.
+
+The renderer writes non-secret execution state to `render-state.json`, downloaded clips to `output/clips/`, and the merged result to `output/final.mp4`. It must never write authorization headers or API keys.
 
 ## 4. Quality checklist
 
@@ -90,3 +97,7 @@ Do not include provider credentials. A future adapter may translate this manifes
 - no generated title or subtitle unless requested;
 - key images visually inspected;
 - manifest and API jobs parse as valid JSON.
+- every executable MiniMax-H3 job has exactly one valid first-frame image;
+- paid submission occurs only after explicit user authorization;
+- rendered clip files and final output exist before reporting success;
+- final duration, frame rate, dimensions, video stream, and audio stream are verified.

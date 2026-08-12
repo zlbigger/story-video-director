@@ -4,7 +4,7 @@
 
 [官方网站](https://zlbigger.com) · [作者主页](https://zlbigger.com)
 
-`story-video-director` 是一个面向 Codex 的导演型 Skill。它不只是改写提示词，而是从叙事判断、时长规划、角色与场景设计开始，生成所需图片素材，拆分视频片段，并交付可以直接复制到 Seedance 等参考驱动视频模型中的中文视听提示词。
+`story-video-director` 是一个面向 Codex 的导演型 Skill。它不只是改写提示词，而是从叙事判断、时长规划、角色与场景设计开始，生成所需图片素材，拆分视频片段，并交付可以直接复制的中文视听提示词；当用户明确要求生成成片并已安全配置凭证时，还可通过 [Metaso MiniMax-H3](https://metaso.cn/minimax-h3) 执行图生视频、下载片段并自动合并。
 
 > Turn stories into director-led AI video production packages: visual assets, shot plans, Chinese audiovisual prompts, and API-ready manifests.
 
@@ -21,6 +21,9 @@
 - 控制 Seedance 2.0 / 2.5 的参考素材数量与上传顺序
 - 输出适合人工操作的制作文档，以及便于后续接入视频 API 的 JSON 清单
 - 使用内置检查器发现超时、素材缺失、引用遗漏和参考数量超限
+- 可选调用 Metaso MiniMax-H3 图生视频，顺序提交、轮询状态并下载结果
+- 使用 FFmpeg 统一片段规格、按剧情顺序合并并输出完整成片
+- 只从环境变量读取 API Key，不把凭证写入项目、日志、README 或 Git
 
 ## 工作流程
 
@@ -40,6 +43,10 @@
 生成项目清单与 API jobs
    ↓
 自动验证完整交付物
+   ↓
+用户明确授权并配置 API Key（可选）
+   ↓
+MiniMax-H3 生成、下载、合并与成片验收
 ```
 
 默认采用“自动导演模式”：除非缺少的信息会显著改变项目，否则不会用一长串问题打断制作。
@@ -135,10 +142,14 @@ project-name/
 ├── prompts/
 │   ├── clip-01.md
 │   └── clip-02.md
+├── output/                  # 执行视频 API 后创建
+│   ├── clips/
+│   └── final.mp4
 ├── 00-director-brief.md
 ├── 01-production-timeline.md
 ├── project-manifest.json
-└── api-jobs.json
+├── api-jobs.json
+└── render-state.json        # 仅保存非秘密任务状态
 ```
 
 - `00-director-brief.md`：故事理解、视觉圣经、表演和声音方向
@@ -146,6 +157,8 @@ project-name/
 - `prompts/`：每段一个可以直接复制的中文视听提示词
 - `project-manifest.json`：完整片段、时长和引用关系
 - `api-jobs.json`：保持顺序和依赖关系的供应商无关任务清单
+- `render-state.json`：供应商任务 ID、状态与本地输出路径，不保存 Key
+- `output/final.mp4`：多段规格统一并合并后的最终成片
 
 ## Seedance 参考预算
 
@@ -180,12 +193,48 @@ python3 story-video-director/scripts/validate_project.py /absolute/path/to/proje
 python3 story-video-director/scripts/validate_project.py --json /absolute/path/to/project
 ```
 
+## 可选：用 MiniMax-H3 直接生成成片
+
+Skill 会先完成图片、提示词、清单和验证，再进入付费视频生成阶段。只有用户明确要求生成成片时才提交任务；接口会消耗第三方平台积分，价格与可用规格以 [metaso.cn/minimax-h3](https://metaso.cn/minimax-h3) 当前页面和 API 返回为准。
+
+当前接入方式为每个片段发送一张独立的电影首帧 `first_frame`。首帧需要已经组合好角色身份、服装、场景、灯光和开场构图，不能直接使用四视图角色设定图、故事板拼图或空场景图。每段时长必须是 1–15 秒整数。
+
+先预览执行计划，不联网、不扣费、也不需要 Key：
+
+```bash
+python3 story-video-director/scripts/metaso_h3_video.py /absolute/path/to/project --dry-run
+```
+
+需要正式生成时，在当前终端隐藏输入并临时导出环境变量：
+
+```bash
+read -s METASO_API_KEY
+export METASO_API_KEY
+```
+
+然后执行：
+
+```bash
+python3 story-video-director/scripts/metaso_h3_video.py /absolute/path/to/project
+```
+
+脚本会按顺序提交任务，避免一次性失控扣费；随后轮询、下载到 `output/clips/`，并使用 FFmpeg 统一编码、音轨、帧率和尺寸，最终生成 `output/final.mp4`。余额不足、认证失败或某段生成失败时会停止后续任务并保留已完成结果，不会暗中用重复视频或静态动画冒充成功片段。
+
+安全约定：
+
+- 只读取 `METASO_API_KEY` 环境变量，不支持 `--api-key` 参数；
+- 不要把 Key 写进 `.env`、JSON、提示词、脚本、命令示例或 Git；
+- 不打印 Authorization 请求头，不在 `render-state.json` 保存凭证；
+- 如果 Key 曾公开粘贴到聊天、日志或代码中，应立即到服务商处轮换。
+
 ## 目录说明
 
 - [`story-video-director/SKILL.md`](story-video-director/SKILL.md)：Skill 主工作流
 - [`story-video-director/references/`](story-video-director/references/)：导演、素材生成、Seedance 与交付规范
 - [`character-identity-sheets.md`](story-video-director/references/character-identity-sheets.md)：真人四视图角色身份图、详细提示词模板与一致性验收规范
 - [`story-video-director/scripts/validate_project.py`](story-video-director/scripts/validate_project.py)：项目检查器
+- [`story-video-director/scripts/metaso_h3_video.py`](story-video-director/scripts/metaso_h3_video.py)：MiniMax-H3 安全提交、轮询、下载与 FFmpeg 合并器
+- [`metaso-minimax-h3.md`](story-video-director/references/metaso-minimax-h3.md)：API 执行边界、首帧要求、凭证安全和失败处理
 - [`story-video-director/agents/openai.yaml`](story-video-director/agents/openai.yaml)：Codex 界面元数据
 - [`reference-materials/`](reference-materials/)：创作过程中参考的相关文本与 PDF，不属于 Skill 运行依赖
 

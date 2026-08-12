@@ -1,4 +1,4 @@
 interface:
   display_name: "故事视频导演"
-  short_description: "把任意故事自动变成完整素材、分镜与可执行视频提示词"
-  default_prompt: "使用 $story-video-director 分析这个故事，自动生成所需图片素材，并交付可直接复制的中文视听视频提示词与 API 清单。"
+  short_description: "把故事变成完整素材、分镜、视听提示词，并可选生成合并视频"
+  default_prompt: "使用 $story-video-director 分析这个故事，生成图片素材、中文视听分镜提示词与 API 清单；如我明确要求成片且已配置 API Key，再提交视频任务并自动合并。"

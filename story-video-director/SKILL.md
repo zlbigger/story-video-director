@@ -1,6 +1,6 @@
 ---
 name: story-video-director
-description: Turn any story, article, script, synopsis, anecdote, advertisement concept, poem, or one-line video idea into a director-led AI video production package. Use when Codex should determine the best total runtime, split the narrative into clips no longer than 15 seconds, design characters and locations, generate and persist the required image assets, create Chinese copy-ready Seedance prompts with inline filename references, camera direction, timed beats, dialogue, narration, sound, last frames, and negative prompts, or prepare manifests for later video API automation. Also use for AI storyboards, reference-driven video planning, Seedance 2.0/2.5 production, and story-to-video workflows.
+description: Turn any story, article, script, synopsis, anecdote, advertisement concept, poem, or one-line video idea into a director-led AI video production package and, when explicitly requested, render and assemble the video through a configured image-to-video API. Use when Codex should determine runtime, split the narrative into clips no longer than 15 seconds, design characters and locations, generate assets, create Chinese audiovisual prompts with inline filename references, prepare manifests, submit MiniMax-H3 image-to-video jobs through Metaso, download clips, or merge them into a verified final video. Also use for AI storyboards, Seedance 2.0/2.5 planning, reference-driven video production, and story-to-video workflows.
 ---
 
 # Story Video Director
@@ -16,7 +16,7 @@ Default to **automatic director mode**:
 - Ask only when a missing choice would materially change the project or create meaningful risk.
 - Generate the full package without waiting for confirmation between ordinary phases.
 
-Use **review-gated mode** only when the user requests approvals, the project is commercially sensitive, identity matching is strict, or image/video generation costs are substantial. In that mode, pause after the director treatment and after visual identity assets.
+Use **review-gated mode** when the user requests approvals, the project is commercially sensitive, identity matching is strict, or image/video generation costs are substantial. External video API submission is always a paid/external-state gate: finish and validate the production package first, then submit only when the user explicitly asks for video generation and the required credential is configured.
 
 ## Required workflow
 
@@ -149,7 +149,24 @@ Omit empty asset subdirectories. Every prompt file must contain exactly one read
 
 Read [references/delivery-contract.md](references/delivery-contract.md) for the manifest schema and delivery details.
 
-### 9. Validate before delivery
+### 9. Optionally render through MiniMax-H3
+
+When the user explicitly asks for finished video generation, prefer the Metaso MiniMax-H3 image-to-video endpoint documented at [metaso.cn/minimax-h3](https://metaso.cn/minimax-h3).
+
+Before submitting any paid job:
+
+1. finish and validate all assets, prompts, `project-manifest.json`, and `api-jobs.json`;
+2. create one standalone first-frame image per clip that already combines the required character identity, location, lighting, costume, and opening composition;
+3. ensure every `api-jobs.json` job identifies exactly one image reference with `"role": "first_frame"`;
+4. tell the user that external generation consumes provider credits and ask them to configure `METASO_API_KEY` locally if it is absent;
+5. never request that the user paste a key into project files, never write the key to disk, and never include it in logs, manifests, commands shown in the final response, or Git history;
+6. submit, poll, download, normalize, concatenate, and verify with `scripts/metaso_h3_video.py`.
+
+If `METASO_API_KEY` is missing, direct the user to [metaso.cn/minimax-h3](https://metaso.cn/minimax-h3) and give environment-variable setup guidance. Do not fall back to embedding a key in source code or a curl example.
+
+For multiple clips, preserve narrative order and use the previous clip's planned final composition as the next clip's first-frame design when continuity matters. Each submitted clip remains 15 seconds or shorter. Read [references/metaso-minimax-h3.md](references/metaso-minimax-h3.md) before preparing or executing jobs.
+
+### 10. Validate before delivery
 
 Run:
 
@@ -166,7 +183,9 @@ Also visually inspect at least:
 - the first, most complex, and final shot image;
 - any image that controls a dangerous, magical, or anatomy-sensitive action.
 
-### 10. Deliver for humans and APIs
+If video rendering was requested, additionally inspect the first frame, every clip boundary, the most complex action, the final frame, audio continuity, exact output duration, resolution, frame rate, and codec metadata.
+
+### 11. Deliver for humans and APIs
 
 Lead with the result:
 
@@ -192,6 +211,10 @@ Do not make the user reconstruct references or combine separate sound and pictur
 - Never omit an explicit final frame.
 - Never invent on-screen text unless the user requested it.
 - Never claim an image or video was generated unless the artifact exists.
+- Never submit a paid video job without an explicit user request to generate video.
+- Never store or print `METASO_API_KEY`, bearer tokens, or provider credentials.
+- Never pretend that identity sheets or other images were uploaded to MiniMax-H3 when only the declared `first_frame` was sent.
+- Never silently replace a failed provider-generated clip with an edited, duplicated, or still-image-derived segment; disclose and obtain user agreement for a fallback.
 
 ## Resource map
 
@@ -201,4 +224,6 @@ Do not make the user reconstruct references or combine separate sound and pictur
 - [references/character-identity-sheets.md](references/character-identity-sheets.md): four-view character identity sheets, detailed ImageGen prompt structure, consistency rules, and reference exclusions.
 - [references/chinese-video-prompt-template.md](references/chinese-video-prompt-template.md): copy-ready Chinese prompt structure and audio syntax.
 - [references/delivery-contract.md](references/delivery-contract.md): project structure, manifest, API job schema, final QA.
+- [references/metaso-minimax-h3.md](references/metaso-minimax-h3.md): credential safety, first-frame preparation, Metaso MiniMax-H3 execution, polling, downloads, multi-clip assembly, and failure handling.
 - `scripts/validate_project.py`: deterministic delivery validator.
+- `scripts/metaso_h3_video.py`: credential-safe MiniMax-H3 project renderer and FFmpeg assembler.

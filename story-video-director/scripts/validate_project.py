@@ -16,6 +16,8 @@ MODEL_LIMITS = {
     # combined-file ceilings. Only enforce the commonly stated image ceiling
     # unless the project manifest records provider-confirmed overrides.
     "seedance-2.5": {"images": 30, "videos": None, "audios": None, "total": None},
+    "minimax-h3": {"images": 9, "videos": 0, "audios": 0, "total": 9},
+    "metaso-minimax-h3": {"images": 9, "videos": 0, "audios": 0, "total": 9},
 }
 
 
@@ -191,6 +193,24 @@ def validate_project(root: Path) -> tuple[list[str], list[str], dict]:
     job_ids = [str(job.get("id", "")) for job in jobs if isinstance(job, dict)]
     if clip_ids and job_ids != clip_ids:
         errors.append("api-jobs.json job order or ids do not match project-manifest clips")
+
+    if target_model in {"minimax-h3", "metaso-minimax-h3"}:
+        for index, job in enumerate(jobs, start=1):
+            if not isinstance(job, dict):
+                continue
+            label = str(job.get("id") or f"job #{index}")
+            refs = job.get("references", [])
+            first_frames = [
+                ref for ref in refs
+                if isinstance(ref, dict) and ref.get("type") == "image" and ref.get("role") == "first_frame"
+            ] if isinstance(refs, list) else []
+            if len(first_frames) != 1:
+                errors.append(f"{label}: MiniMax-H3 job requires exactly one image reference with role first_frame")
+            elif not isinstance(first_frames[0].get("path"), str) or not (root / first_frames[0]["path"]).is_file():
+                errors.append(f"{label}: first_frame path does not exist")
+            duration = job.get("duration_seconds")
+            if not isinstance(duration, int) or isinstance(duration, bool) or not 1 <= duration <= 15:
+                errors.append(f"{label}: MiniMax-H3 duration_seconds must be an integer in [1, 15]")
 
     summary.update({"clips": len(clips), "duration": total, "model": target_model})
     return errors, warnings, summary
