@@ -197,7 +197,11 @@ python3 story-video-director/scripts/validate_project.py --json /absolute/path/t
 
 Skill 会先完成图片、提示词、清单和验证，再进入付费视频生成阶段。只有用户明确要求生成成片时才提交任务；接口会消耗第三方平台积分，价格与可用规格以 [metaso.cn/minimax-h3](https://metaso.cn/minimax-h3) 当前页面和 API 返回为准。
 
-生成效果演示：[播放或下载 MiniMax-H3 竖屏视频](examples/minimax-h3-demo.mp4)（约 15 秒，H.264/AAC，768×1344）。
+### MiniMax-H3 生成效果演示
+
+[![MiniMax-H3 生成视频动态预览，点击播放完整视频](examples/minimax-h3-demo-preview.gif)](examples/minimax-h3-demo.mp4)
+
+点击上方动态预览可打开完整有声视频，也可以[直接播放或下载 MP4](examples/minimax-h3-demo.mp4)。成片约 15 秒，H.264/AAC，768×1344。
 
 当前接入方式为每个片段发送一张独立的电影首帧 `first_frame`。首帧需要已经组合好角色身份、服装、场景、灯光和开场构图，不能直接使用四视图角色设定图、故事板拼图或空场景图。每段时长必须是 1–15 秒整数。
 
@@ -249,6 +253,7 @@ python3 story-video-director/scripts/metaso_h3_video.py /absolute/path/to/projec
 - [`metaso-minimax-h3.md`](story-video-director/references/metaso-minimax-h3.md)：API 执行边界、首帧要求、凭证安全和失败处理
 - [`story-video-director/agents/openai.yaml`](story-video-director/agents/openai.yaml)：Codex 界面元数据
 - [`examples/minimax-h3-demo.mp4`](examples/minimax-h3-demo.mp4)：MiniMax-H3 图生视频效果演示
+- [`examples/minimax-h3-demo-preview.gif`](examples/minimax-h3-demo-preview.gif)：README 首页动态预览图
 - [`reference-materials/`](reference-materials/)：创作过程中参考的相关文本与 PDF，不属于 Skill 运行依赖
 
 ## 参考文本
