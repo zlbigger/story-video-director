@@ -1,0 +1,742 @@
+{
+  "version": 1,
+  "title": "劳山道士",
+  "status": "public_example_archive",
+  "submission_enabled": false,
+  "target_model": "metaso-minimax-h3",
+  "recurring_identities": [
+    {
+      "id": "wang",
+      "identity_anchor": "assets/characters/wang-identity.png",
+      "clips": [
+        "clip-01",
+        "clip-02",
+        "clip-03",
+        "clip-04",
+        "clip-05",
+        "clip-06",
+        "clip-07",
+        "clip-08",
+        "clip-09"
+      ]
+    },
+    {
+      "id": "master",
+      "identity_anchor": "assets/characters/master-identity.png",
+      "clips": [
+        "clip-01",
+        "clip-04",
+        "clip-05",
+        "clip-06"
+      ]
+    },
+    {
+      "id": "wife",
+      "identity_anchor": "assets/characters/wife-identity.png",
+      "clips": [
+        "clip-07",
+        "clip-08"
+      ]
+    }
+  ],
+  "reference_limits": {
+    "images": 9,
+    "videos": 3,
+    "audios": 3,
+    "total": 12
+  },
+  "total_duration_seconds": 90,
+  "planned_edited_duration_seconds": 88.5,
+  "max_clip_seconds": 15,
+  "clips": [
+    {
+      "id": "clip-01",
+      "title": "入山",
+      "duration_seconds": 10,
+      "prompt_file": "prompts/clip-01.md",
+      "image_refs": [
+        "assets/shots/shot-01-arrival.png",
+        "assets/characters/wang-identity.png",
+        "assets/characters/master-identity.png",
+        "assets/locations/mountain-yard.png"
+      ],
+      "video_refs": [],
+      "audio_refs": [],
+      "depends_on": [],
+      "continuity": {
+        "continuity_from": "",
+        "continuity_to": "clip-02",
+        "opening_state": "首段入山。",
+        "end_state": "王生双手握斧，视线停在画外柴堆；道士手指尚未收回，镜头静止。"
+      },
+      "reference_labels": [
+        {
+          "label": "入山开场构图",
+          "path": "assets/shots/shot-01-arrival.png",
+          "relationship": "composition_reference",
+          "inherit": [
+            "角色相对位置",
+            "景别与构图",
+            "可见动作状态"
+          ],
+          "exclude": [
+            "额外人物",
+            "文字",
+            "将目标图动作提前到开场",
+            "以静帧替代运动速度"
+          ]
+        },
+        {
+          "label": "王生角色参考",
+          "path": "assets/characters/wang-identity.png",
+          "relationship": "identity_preserved",
+          "inherit": [
+            "面孔",
+            "年龄",
+            "身体比例",
+            "发髻",
+            "全套服装与鞋"
+          ],
+          "exclude": [
+            "浅灰影棚背景",
+            "四视图并排结构",
+            "分栏接缝",
+            "正侧背重复人物",
+            "中性参考站姿"
+          ]
+        },
+        {
+          "label": "道士角色参考",
+          "path": "assets/characters/master-identity.png",
+          "relationship": "identity_preserved",
+          "inherit": [
+            "面孔",
+            "年龄",
+            "身体比例",
+            "发髻",
+            "全套服装与鞋"
+          ],
+          "exclude": [
+            "浅灰影棚背景",
+            "四视图并排结构",
+            "分栏接缝",
+            "正侧背重复人物",
+            "中性参考站姿"
+          ]
+        },
+        {
+          "label": "山观场景",
+          "path": "assets/locations/mountain-yard.png",
+          "relationship": "composition_reference",
+          "inherit": [
+            "空间地标",
+            "材质",
+            "光线方向"
+          ],
+          "exclude": [
+            "任何人物或动物",
+            "装饰上的符号",
+            "参考图中不适用于本段的时间季节"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clip-02",
+      "title": "砍柴",
+      "duration_seconds": 10,
+      "prompt_file": "prompts/clip-02.md",
+      "image_refs": [
+        "assets/characters/wang-identity.png",
+        "assets/locations/mountain-yard.png"
+      ],
+      "video_refs": [],
+      "audio_refs": [],
+      "depends_on": [],
+      "continuity": {
+        "continuity_from": "clip-01",
+        "continuity_to": "clip-03",
+        "opening_state": "承接：王生双手握斧，视线停在画外柴堆；道士手指尚未收回，镜头静止。",
+        "end_state": "王生右手扶斧柄，左手抹汗，木块已分开留在墩上，镜头静止。"
+      },
+      "reference_labels": [
+        {
+          "label": "王生角色参考",
+          "path": "assets/characters/wang-identity.png",
+          "relationship": "identity_preserved",
+          "inherit": [
+            "面孔",
+            "年龄",
+            "身体比例",
+            "发髻",
+            "全套服装与鞋"
+          ],
+          "exclude": [
+            "浅灰影棚背景",
+            "四视图并排结构",
+            "分栏接缝",
+            "正侧背重复人物",
+            "中性参考站姿"
+          ]
+        },
+        {
+          "label": "山观场景",
+          "path": "assets/locations/mountain-yard.png",
+          "relationship": "composition_reference",
+          "inherit": [
+            "空间地标",
+            "材质",
+            "光线方向"
+          ],
+          "exclude": [
+            "任何人物或动物",
+            "装饰上的符号",
+            "参考图中不适用于本段的时间季节"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clip-03",
+      "title": "数月",
+      "duration_seconds": 10,
+      "prompt_file": "prompts/clip-03.md",
+      "image_refs": [
+        "assets/characters/wang-identity.png",
+        "assets/locations/mountain-yard.png"
+      ],
+      "video_refs": [],
+      "audio_refs": [],
+      "depends_on": [],
+      "continuity": {
+        "continuity_from": "clip-02",
+        "continuity_to": "clip-04",
+        "opening_state": "承接：王生右手扶斧柄，左手抹汗，木块已分开留在墩上，镜头静止。",
+        "end_state": "斧留在柴墩边，王生向右跨出画面，衣摆继续向右摆动。"
+      },
+      "reference_labels": [
+        {
+          "label": "王生角色参考",
+          "path": "assets/characters/wang-identity.png",
+          "relationship": "identity_preserved",
+          "inherit": [
+            "面孔",
+            "年龄",
+            "身体比例",
+            "发髻",
+            "全套服装与鞋"
+          ],
+          "exclude": [
+            "浅灰影棚背景",
+            "四视图并排结构",
+            "分栏接缝",
+            "正侧背重复人物",
+            "中性参考站姿"
+          ]
+        },
+        {
+          "label": "山观场景",
+          "path": "assets/locations/mountain-yard.png",
+          "relationship": "composition_reference",
+          "inherit": [
+            "空间地标",
+            "材质",
+            "光线方向"
+          ],
+          "exclude": [
+            "任何人物或动物",
+            "装饰上的符号",
+            "参考图中不适用于本段的时间季节"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clip-04",
+      "title": "求术",
+      "duration_seconds": 10,
+      "prompt_file": "prompts/clip-04.md",
+      "image_refs": [
+        "assets/characters/wang-identity.png",
+        "assets/characters/master-identity.png",
+        "assets/locations/mountain-yard.png"
+      ],
+      "video_refs": [],
+      "audio_refs": [],
+      "depends_on": [],
+      "continuity": {
+        "continuity_from": "clip-03",
+        "continuity_to": "clip-05",
+        "opening_state": "承接：斧留在柴墩边，王生向右跨出画面，衣摆继续向右摆动。",
+        "end_state": "道士嘴唇闭合、茶碗已放稳，视线指向右边白墙；王生离画等待。"
+      },
+      "reference_labels": [
+        {
+          "label": "王生角色参考",
+          "path": "assets/characters/wang-identity.png",
+          "relationship": "identity_preserved",
+          "inherit": [
+            "面孔",
+            "年龄",
+            "身体比例",
+            "发髻",
+            "全套服装与鞋"
+          ],
+          "exclude": [
+            "浅灰影棚背景",
+            "四视图并排结构",
+            "分栏接缝",
+            "正侧背重复人物",
+            "中性参考站姿"
+          ]
+        },
+        {
+          "label": "道士角色参考",
+          "path": "assets/characters/master-identity.png",
+          "relationship": "identity_preserved",
+          "inherit": [
+            "面孔",
+            "年龄",
+            "身体比例",
+            "发髻",
+            "全套服装与鞋"
+          ],
+          "exclude": [
+            "浅灰影棚背景",
+            "四视图并排结构",
+            "分栏接缝",
+            "正侧背重复人物",
+            "中性参考站姿"
+          ]
+        },
+        {
+          "label": "山观场景",
+          "path": "assets/locations/mountain-yard.png",
+          "relationship": "composition_reference",
+          "inherit": [
+            "空间地标",
+            "材质",
+            "光线方向"
+          ],
+          "exclude": [
+            "任何人物或动物",
+            "装饰上的符号",
+            "参考图中不适用于本段的时间季节"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clip-05",
+      "title": "传术",
+      "duration_seconds": 10,
+      "prompt_file": "prompts/clip-05.md",
+      "image_refs": [
+        "assets/characters/wang-identity.png",
+        "assets/characters/master-identity.png",
+        "assets/locations/mountain-yard.png"
+      ],
+      "video_refs": [],
+      "audio_refs": [],
+      "depends_on": [],
+      "continuity": {
+        "continuity_from": "clip-04",
+        "continuity_to": "clip-06",
+        "opening_state": "承接：道士嘴唇闭合、茶碗已放稳，视线指向右边白墙；王生离画等待。",
+        "end_state": "王生低头前倾，前脚仍接触地面，身体尚未抵墙；道士站在路径外。"
+      },
+      "reference_labels": [
+        {
+          "label": "王生角色参考",
+          "path": "assets/characters/wang-identity.png",
+          "relationship": "identity_preserved",
+          "inherit": [
+            "面孔",
+            "年龄",
+            "身体比例",
+            "发髻",
+            "全套服装与鞋"
+          ],
+          "exclude": [
+            "浅灰影棚背景",
+            "四视图并排结构",
+            "分栏接缝",
+            "正侧背重复人物",
+            "中性参考站姿"
+          ]
+        },
+        {
+          "label": "道士角色参考",
+          "path": "assets/characters/master-identity.png",
+          "relationship": "identity_preserved",
+          "inherit": [
+            "面孔",
+            "年龄",
+            "身体比例",
+            "发髻",
+            "全套服装与鞋"
+          ],
+          "exclude": [
+            "浅灰影棚背景",
+            "四视图并排结构",
+            "分栏接缝",
+            "正侧背重复人物",
+            "中性参考站姿"
+          ]
+        },
+        {
+          "label": "山观场景",
+          "path": "assets/locations/mountain-yard.png",
+          "relationship": "composition_reference",
+          "inherit": [
+            "空间地标",
+            "材质",
+            "光线方向"
+          ],
+          "exclude": [
+            "任何人物或动物",
+            "装饰上的符号",
+            "参考图中不适用于本段的时间季节"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clip-06",
+      "title": "穿墙",
+      "duration_seconds": 10,
+      "prompt_file": "prompts/clip-06.md",
+      "image_refs": [
+        "assets/shots/shot-06-wall-test.png",
+        "assets/characters/wang-identity.png",
+        "assets/characters/master-identity.png",
+        "assets/shots/shot-06-wall-success.png"
+      ],
+      "video_refs": [],
+      "audio_refs": [],
+      "depends_on": [],
+      "continuity": {
+        "continuity_from": "clip-05",
+        "continuity_to": "clip-07",
+        "opening_state": "承接：王生低头前倾，前脚仍接触地面，身体尚未抵墙；道士站在路径外。",
+        "end_state": "王生在墙右侧，手掌贴着完整墙面，嘴唇闭合，微笑尚未消退。"
+      },
+      "reference_labels": [
+        {
+          "label": "穿墙准备构图",
+          "path": "assets/shots/shot-06-wall-test.png",
+          "relationship": "composition_reference",
+          "inherit": [
+            "角色相对位置",
+            "景别与构图",
+            "可见动作状态"
+          ],
+          "exclude": [
+            "额外人物",
+            "文字",
+            "将目标图动作提前到开场",
+            "以静帧替代运动速度"
+          ]
+        },
+        {
+          "label": "王生角色参考",
+          "path": "assets/characters/wang-identity.png",
+          "relationship": "identity_preserved",
+          "inherit": [
+            "面孔",
+            "年龄",
+            "身体比例",
+            "发髻",
+            "全套服装与鞋"
+          ],
+          "exclude": [
+            "浅灰影棚背景",
+            "四视图并排结构",
+            "分栏接缝",
+            "正侧背重复人物",
+            "中性参考站姿"
+          ]
+        },
+        {
+          "label": "道士角色参考",
+          "path": "assets/characters/master-identity.png",
+          "relationship": "identity_preserved",
+          "inherit": [
+            "面孔",
+            "年龄",
+            "身体比例",
+            "发髻",
+            "全套服装与鞋"
+          ],
+          "exclude": [
+            "浅灰影棚背景",
+            "四视图并排结构",
+            "分栏接缝",
+            "正侧背重复人物",
+            "中性参考站姿"
+          ]
+        },
+        {
+          "label": "穿墙完成构图目标",
+          "path": "assets/shots/shot-06-wall-success.png",
+          "relationship": "composition_reference",
+          "inherit": [
+            "角色相对位置",
+            "景别与构图",
+            "可见动作状态"
+          ],
+          "exclude": [
+            "额外人物",
+            "文字",
+            "将目标图动作提前到开场",
+            "以静帧替代运动速度"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clip-07",
+      "title": "炫耀",
+      "duration_seconds": 10,
+      "prompt_file": "prompts/clip-07.md",
+      "image_refs": [
+        "assets/characters/wang-identity.png",
+        "assets/characters/wife-identity.png",
+        "assets/locations/home-room.png"
+      ],
+      "video_refs": [],
+      "audio_refs": [],
+      "depends_on": [],
+      "continuity": {
+        "continuity_from": "clip-06",
+        "continuity_to": "clip-08",
+        "opening_state": "承接：王生在墙右侧，手掌贴着完整墙面，嘴唇闭合，微笑尚未消退。",
+        "end_state": "王生在墙左侧两步处低头前倾、尚未起跑；妻子在左后方闭嘴，手已离开针线。"
+      },
+      "reference_labels": [
+        {
+          "label": "王生角色参考",
+          "path": "assets/characters/wang-identity.png",
+          "relationship": "identity_preserved",
+          "inherit": [
+            "面孔",
+            "年龄",
+            "身体比例",
+            "发髻",
+            "全套服装与鞋"
+          ],
+          "exclude": [
+            "浅灰影棚背景",
+            "四视图并排结构",
+            "分栏接缝",
+            "正侧背重复人物",
+            "中性参考站姿"
+          ]
+        },
+        {
+          "label": "妻子角色参考",
+          "path": "assets/characters/wife-identity.png",
+          "relationship": "identity_preserved",
+          "inherit": [
+            "面孔",
+            "年龄",
+            "身体比例",
+            "发髻",
+            "全套服装与鞋"
+          ],
+          "exclude": [
+            "浅灰影棚背景",
+            "四视图并排结构",
+            "分栏接缝",
+            "正侧背重复人物",
+            "中性参考站姿"
+          ]
+        },
+        {
+          "label": "堂屋场景",
+          "path": "assets/locations/home-room.png",
+          "relationship": "composition_reference",
+          "inherit": [
+            "空间地标",
+            "材质",
+            "光线方向"
+          ],
+          "exclude": [
+            "任何人物或动物",
+            "装饰上的符号",
+            "参考图中不适用于本段的时间季节"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clip-08",
+      "title": "撞墙",
+      "duration_seconds": 10,
+      "prompt_file": "prompts/clip-08.md",
+      "image_refs": [
+        "assets/shots/shot-08-impact.png",
+        "assets/characters/wang-identity.png",
+        "assets/characters/wife-identity.png",
+        "assets/locations/home-room.png"
+      ],
+      "video_refs": [],
+      "audio_refs": [],
+      "depends_on": [],
+      "continuity": {
+        "continuity_from": "clip-07",
+        "continuity_to": "clip-09",
+        "opening_state": "承接：王生在墙左侧两步处低头前倾、尚未起跑；妻子在左后方闭嘴，手已离开针线。",
+        "end_state": "王生坐地捂额，妻子蹲左侧扶住他，墙完整；两人嘴唇闭合，镜头停留。"
+      },
+      "reference_labels": [
+        {
+          "label": "撞墙前准备构图",
+          "path": "assets/shots/shot-08-impact.png",
+          "relationship": "composition_reference",
+          "inherit": [
+            "角色相对位置",
+            "景别与构图",
+            "可见动作状态"
+          ],
+          "exclude": [
+            "额外人物",
+            "文字",
+            "将目标图动作提前到开场",
+            "以静帧替代运动速度"
+          ]
+        },
+        {
+          "label": "王生角色参考",
+          "path": "assets/characters/wang-identity.png",
+          "relationship": "identity_preserved",
+          "inherit": [
+            "面孔",
+            "年龄",
+            "身体比例",
+            "发髻",
+            "全套服装与鞋"
+          ],
+          "exclude": [
+            "浅灰影棚背景",
+            "四视图并排结构",
+            "分栏接缝",
+            "正侧背重复人物",
+            "中性参考站姿"
+          ]
+        },
+        {
+          "label": "妻子角色参考",
+          "path": "assets/characters/wife-identity.png",
+          "relationship": "identity_preserved",
+          "inherit": [
+            "面孔",
+            "年龄",
+            "身体比例",
+            "发髻",
+            "全套服装与鞋"
+          ],
+          "exclude": [
+            "浅灰影棚背景",
+            "四视图并排结构",
+            "分栏接缝",
+            "正侧背重复人物",
+            "中性参考站姿"
+          ]
+        },
+        {
+          "label": "堂屋场景",
+          "path": "assets/locations/home-room.png",
+          "relationship": "composition_reference",
+          "inherit": [
+            "空间地标",
+            "材质",
+            "光线方向"
+          ],
+          "exclude": [
+            "任何人物或动物",
+            "装饰上的符号",
+            "参考图中不适用于本段的时间季节"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clip-09",
+      "title": "梦醒",
+      "duration_seconds": 10,
+      "prompt_file": "prompts/clip-09.md",
+      "image_refs": [
+        "assets/shots/shot-09-final.png",
+        "assets/characters/wang-identity.png",
+        "assets/locations/night-room.png"
+      ],
+      "video_refs": [],
+      "audio_refs": [],
+      "depends_on": [],
+      "continuity": {
+        "continuity_from": "clip-08",
+        "continuity_to": "",
+        "opening_state": "承接：王生坐地捂额，妻子蹲左侧扶住他，墙完整；两人嘴唇闭合，镜头停留。",
+        "end_state": "王生睁眼看右侧白墙，手落回被上，嘴唇闭合；镜头静止，油灯微晃，停在墙与额包的并置。"
+      },
+      "reference_labels": [
+        {
+          "label": "梦醒最终构图目标",
+          "path": "assets/shots/shot-09-final.png",
+          "relationship": "composition_reference",
+          "inherit": [
+            "角色相对位置",
+            "景别与构图",
+            "可见动作状态"
+          ],
+          "exclude": [
+            "额外人物",
+            "文字",
+            "将目标图动作提前到开场",
+            "以静帧替代运动速度"
+          ]
+        },
+        {
+          "label": "王生角色参考",
+          "path": "assets/characters/wang-identity.png",
+          "relationship": "identity_preserved",
+          "inherit": [
+            "面孔",
+            "年龄",
+            "身体比例",
+            "发髻",
+            "全套服装与鞋"
+          ],
+          "exclude": [
+            "浅灰影棚背景",
+            "四视图并排结构",
+            "分栏接缝",
+            "正侧背重复人物",
+            "中性参考站姿"
+          ]
+        },
+        {
+          "label": "卧房场景",
+          "path": "assets/locations/night-room.png",
+          "relationship": "composition_reference",
+          "inherit": [
+            "空间地标",
+            "材质",
+            "光线方向"
+          ],
+          "exclude": [
+            "任何人物或动物",
+            "装饰上的符号",
+            "参考图中不适用于本段的时间季节"
+          ]
+        }
+      ]
+    }
+  ],
+  "visual_style": "humorous_pixar_style_3d_animation",
+  "art_bible": "05-art-bible-3d.md",
+  "asset_count": 11,
+  "edited_duration_seconds": 88.5,
+  "final_output": "video-preview.mp4"
+}

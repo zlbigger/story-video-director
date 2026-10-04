@@ -1,0 +1,23 @@
+{
+  "provider_tasks": 9,
+  "all_tasks_succeeded": true,
+  "original_clips": 9,
+  "requested_generated_duration_seconds": 90,
+  "edited_duration_seconds": 88.5,
+  "video": "2560x1440 H.264 24fps yuv420p",
+  "audio": "AAC stereo 48kHz",
+  "decode": "full file decoded successfully",
+  "black_detection": "no intervals >=0.1 seconds detected",
+  "review": "all clips sampled at 2–3 fps and boundary frames inspected",
+  "limitations": [
+    "Normal-speed audiovisual scene review not completed by the agent",
+    "Exact dialogue wording, voice consistency and lip sync not verified",
+    "Boundary audio continuity requires listening review"
+  ],
+  "observations": [
+    "Clip02 generated splitting of chopping stump rather than only small log",
+    "Wife laughter expression in clip08 is broader than the restrained screenplay",
+    "Clip05 repeated run-up removed at source out 8.5 seconds"
+  ],
+  "fallback_footage": false
+}

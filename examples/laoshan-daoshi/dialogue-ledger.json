@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "language": "zh-CN",
+  "characters": [
+    {
+      "id": "wang",
+      "name": "王生",
+      "voice": "二十八岁男声，清亮，求术时放软，炫耀时抬高尾音"
+    },
+    {
+      "id": "master",
+      "name": "道士",
+      "voice": "六十岁男声，低而清楚，不训斥，不故作神秘"
+    },
+    {
+      "id": "wife",
+      "name": "妻子",
+      "voice": "二十六岁女声，本片不安排台词"
+    }
+  ],
+  "clips": [
+    {
+      "id": "clip-01",
+      "utterances": []
+    },
+    {
+      "id": "clip-02",
+      "utterances": []
+    },
+    {
+      "id": "clip-03",
+      "utterances": []
+    },
+    {
+      "id": "clip-04",
+      "utterances": [
+        {
+          "id": "c04-u01",
+          "speaker_id": "wang",
+          "speaker_name": "王生",
+          "addressee": "道士",
+          "text": "师父，教我一点小术，我便回去。",
+          "start_seconds": 2,
+          "end_seconds": 7,
+          "delivery": "单人近景；压低声音讨价还价",
+          "visibility": "on_screen",
+          "production_path": "generated_sync"
+        }
+      ]
+    },
+    {
+      "id": "clip-05",
+      "utterances": [
+        {
+          "id": "c05-u01",
+          "speaker_id": "master",
+          "speaker_name": "道士",
+          "addressee": "王生",
+          "text": "念咒，低头，冲过去。莫存私心。",
+          "start_seconds": 2,
+          "end_seconds": 8,
+          "delivery": "道士在王生左后方离画；镜头覆盖王生背面与墙",
+          "visibility": "off_screen",
+          "production_path": "sound_led"
+        }
+      ]
+    },
+    {
+      "id": "clip-06",
+      "utterances": []
+    },
+    {
+      "id": "clip-07",
+      "utterances": [
+        {
+          "id": "c07-u01",
+          "speaker_id": "wang",
+          "speaker_name": "王生",
+          "addressee": "妻子",
+          "text": "我学会穿墙了。你看。",
+          "start_seconds": 2,
+          "end_seconds": 6,
+          "delivery": "王生单人中近景；抬高尾音向妻子证明自己",
+          "visibility": "on_screen",
+          "production_path": "generated_sync"
+        }
+      ]
+    },
+    {
+      "id": "clip-08",
+      "utterances": []
+    },
+    {
+      "id": "clip-09",
+      "utterances": [
+        {
+          "id": "c09-u01",
+          "speaker_id": "master",
+          "speaker_name": "道士",
+          "addressee": "王生",
+          "text": "你这点恒心，也就只能到这儿。",
+          "start_seconds": 2,
+          "end_seconds": 7.5,
+          "delivery": "明确梦中师父声音；王生睡脸与墙同框",
+          "visibility": "off_screen",
+          "production_path": "sound_led"
+        }
+      ]
+    }
+  ]
+}

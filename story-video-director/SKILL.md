@@ -86,7 +86,9 @@ Read [references/seedance-reference-rules.md](references/seedance-reference-rule
 
 ### 5. Generate the visual bible and assets
 
-Use the built-in image-generation capability for real raster assets when available. Follow the imagegen skill's save and validation rules. Do not stop at image prompts when the user asked for a complete project.
+Use the built-in image-generation capability for real raster assets when available. Follow the imagegen skill's save and validation rules. When the user selects an existing compatible image API or local gateway, inspect its documented model list and interface, then use the authorized route without repeating the same provider-choice question. Read [references/image-backends-and-art-direction.md](references/image-backends-and-art-direction.md) for gateway configuration, secret handling and style changes. Do not stop at image prompts when the user asked for a complete project.
+
+Preserve the user's chosen medium across the visual bible, character sheets, locations, keyframes and video prompts. For 3D animation, define model proportions and stylized materials instead of silently retaining photorealistic casting defaults.
 
 Generate only what the production needs:
 
@@ -215,6 +217,10 @@ Lead with the result:
 - note any intentional originalization or safety adaptation.
 
 Do not make the user reconstruct references or combine separate sound and picture prompts. The copyable prompt is the operational unit.
+
+## Publishing a worked example
+
+When the user asks to publish a project, read [references/public-showcase.md](references/public-showcase.md). Export a separate portable public copy, keep evidence and QA limitations accurate, and scan the exact Git/Release artifacts for credentials and private paths. Publishing permission does not authorize a new paid rendering run.
 
 ## Hard invariants
 

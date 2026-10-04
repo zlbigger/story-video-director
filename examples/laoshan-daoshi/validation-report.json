@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "summary": {
+    "project": "examples/laoshan-daoshi",
+    "clips": 9,
+    "duration": 90.0,
+    "model": "metaso-minimax-h3"
+  },
+  "errors": [],
+  "warnings": []
+}

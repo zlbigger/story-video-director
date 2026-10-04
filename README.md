@@ -8,13 +8,40 @@
 
 > Turn stories into director-led AI video production packages: visual assets, shot plans, Chinese audiovisual prompts, and API-ready manifests.
 
+## 最新版 v1.1.0（2026-10-04）
+
+本次同步本地已使用的完整工作流，并补充以下说明与保护：
+
+- 先写场景卡、连续剧本、对白账本与8处边界计划，再拆生成片段；每段仍≤15秒。
+- 尊重用户选定的幽默3D动画等美术方向，角色四视图、环境、关键帧与所有提示词同步更新。
+- 支持用户选定的兼容本地生图网关流程；接口与模型需验证，凭据只在授权进程的内存/环境中使用。
+- H3多模态参考图与首尾帧模式分开，文件名绑定与上传槽位一致，不声称上传未声明的身份图。
+- 渲染器在`submission_enabled: false`时阻止付费执行，但允许dry-run；检测已有任务ID，拒绝覆盖状态并重复扣费。它仍不具备自动resume功能，需检查现有任务或按阶段继续。
+- 公开案例使用独立导出副本，不包含密钥、运行日志、任务ID或私人路径；明确区分技术检查与对白/口型验收。
+
+### 完整案例：《劳山道士》幽默3D动画
+
+[![劳山道士穿墙与撞墙片段精选，点击进入完整案例](examples/laoshan-daoshi/preview.gif)](examples/laoshan-daoshi/README.md)
+
+**9段×10秒生成 → 88.5秒剪辑，11张美术图；gpt-image-2 + MiniMax-H3。** 去掉传术段末尾重复的起跑，保留9段原始视频和完整制作文件。
+
+[完整案例说明](examples/laoshan-daoshi/README.md) · [720p有声预览](examples/laoshan-daoshi/video-preview.mp4) · [2K原始成片](https://github.com/zlbigger/story-video-director/releases/download/v1.1.0/laoshan-daoshi-2k.mp4) · [完整项目包](https://github.com/zlbigger/story-video-director/releases/download/v1.1.0/laoshan-daoshi-public-project.zip)
+
+[美术图](examples/laoshan-daoshi/06-asset-gallery.md) · [视频提示词](examples/laoshan-daoshi/03-all-prompts.md) · [图像提示词](examples/laoshan-daoshi/image-prompts/) · [剧本](examples/laoshan-daoshi/00-screenplay.md) · [实际剪辑配方](examples/laoshan-daoshi/edit-recipe.json)
+
+![王生角色四视图](examples/laoshan-daoshi/assets/characters/wang-identity.png)
+
+![撞墙前站位关键帧](examples/laoshan-daoshi/assets/shots/shot-08-impact.png)
+
+案例是已经生成的第一版：技术与抽帧检查完成，正常速度带声整场、逐字台词、声线和口型验收仍待人工复核。展示实际结果与偏差，不将结构校验称为完整表演验收。
+
 ## 能解决什么问题
 
 - 自动理解故事的核心事件、情绪变化、反转与结局
 - 根据内容密度判断最佳总时长，不强行压缩成 15 秒
 - 将完整故事拆成多个独立视频片段，每段不超过 15 秒
 - 设计角色、服装、场景、道具、怪物、变身状态和关键帧
-- 默认生成“正面全身＋严格侧面＋背面全身＋脸部特写”的四视图角色身份图，增强真人角色与视频连续性
+- 默认生成“正面全身＋严格侧面＋背面全身＋脸部特写”的四视图角色身份图，增强真人或3D动画角色的身份连续性
 - 调用 Codex 的 ImageGen 能力实际生成并保存图片素材
 - 为每段生成包含运镜、动作、对白、旁白、音效、环境声和音乐的中文提示词
 - 在每段可复制提示词中自动加入 `角色名@filename.png` 形式的素材引用
@@ -203,7 +230,12 @@ Skill 会先完成图片、提示词、清单和验证，再进入付费视频�
 
 点击上方动态预览可打开完整有声视频，也可以[直接播放或下载 MP4](examples/minimax-h3-demo.mp4)。成片约 15 秒，H.264/AAC，768×1344。
 
-当前接入方式为每个片段发送一张独立的电影首帧 `first_frame`。首帧需要已经组合好角色身份、服装、场景、灯光和开场构图，不能直接使用四视图角色设定图、故事板拼图或空场景图。每段时长必须是 1–15 秒整数。
+当前支持两种互斥接入方式：
+
+- **多模态参考模式**：发送`reference_image`（最多9张）及供应商支持的参考视频/声音，按上传槽位`@1`等绑定；适合需要角色身份、环境或动作构图连续的叙事。劳山道士案例每段使用2—4张真实参考图。
+- **首尾帧模式**：一张独立电影首帧`first_frame`，可选一张`last_frame`；不能混用多模态参考角色。首帧需组合人物、服装、环境、灯光与开场构图，不能用四视图、分镜拼图或空场景代替。
+
+当前适配器每段时长为4—15秒整数，实际规格以供应商返回为准。详细规则见[H3参考](story-video-director/references/metaso-minimax-h3.md)。
 
 先预览执行计划，不联网、不扣费、也不需要 Key：
 
@@ -282,6 +314,15 @@ python3 story-video-director/scripts/metaso_h3_video.py /absolute/path/to/projec
 
 项目动态、案例与更多 AI 创作工具，请访问 [zlbigger.com](https://zlbigger.com)。
 
+## 本地图片生成与公开案例
+
+用户选择已有本地兼容接口时，先验证模型和图片API；使用现有imagegen CLI及进程环境配置，不把本地服务地址、密钥或完整配置文件加入制作包。具体见[图片后端与美术方向](story-video-director/references/image-backends-and-art-direction.md)。
+
+公开案例导出和Release打包流程见[公开展示规范](story-video-director/references/public-showcase.md)。网页预览为转码版本，原始2K视频与9段片段放在Release完整项目包中；案例清单禁止直接触发付费任务。
+
 ## License
 
 本项目代码与原创 Skill 文件采用 [MIT License](LICENSE)。`reference-materials/` 中的外部参考资料不包含在该授权范围内，具体以原资料声明为准。
+
+
+`examples/laoshan-daoshi/`中的本案例原创文档与生成媒体按仓库MIT许可提供；不包含外部作品、角色或商标的授权，也不保证生成结果具有排他版权。

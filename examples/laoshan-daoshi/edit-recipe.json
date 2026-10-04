@@ -1,0 +1,81 @@
+{
+  "generated_requested_seconds": 90,
+  "edited_seconds": 88.5,
+  "frame_rate": 24,
+  "picture_policy": "hard cuts; clip05 tail trimmed to avoid duplicate run-up",
+  "audio_policy": "preserve provider audio; 30ms endpoint fades; no added score, no J/L cuts",
+  "timeline": [
+    {
+      "id": "clip-01",
+      "source": "output/clips/clip-01.mp4",
+      "source_in_seconds": 0,
+      "source_out_seconds": 10,
+      "output_start_seconds": 0,
+      "output_end_seconds": 10
+    },
+    {
+      "id": "clip-02",
+      "source": "output/clips/clip-02.mp4",
+      "source_in_seconds": 0,
+      "source_out_seconds": 10,
+      "output_start_seconds": 10,
+      "output_end_seconds": 20
+    },
+    {
+      "id": "clip-03",
+      "source": "output/clips/clip-03.mp4",
+      "source_in_seconds": 0,
+      "source_out_seconds": 10,
+      "output_start_seconds": 20,
+      "output_end_seconds": 30
+    },
+    {
+      "id": "clip-04",
+      "source": "output/clips/clip-04.mp4",
+      "source_in_seconds": 0,
+      "source_out_seconds": 10,
+      "output_start_seconds": 30,
+      "output_end_seconds": 40
+    },
+    {
+      "id": "clip-05",
+      "source": "output/clips/clip-05.mp4",
+      "source_in_seconds": 0,
+      "source_out_seconds": 8.5,
+      "output_start_seconds": 40,
+      "output_end_seconds": 48.5
+    },
+    {
+      "id": "clip-06",
+      "source": "output/clips/clip-06.mp4",
+      "source_in_seconds": 0,
+      "source_out_seconds": 10,
+      "output_start_seconds": 48.5,
+      "output_end_seconds": 58.5
+    },
+    {
+      "id": "clip-07",
+      "source": "output/clips/clip-07.mp4",
+      "source_in_seconds": 0,
+      "source_out_seconds": 10,
+      "output_start_seconds": 58.5,
+      "output_end_seconds": 68.5
+    },
+    {
+      "id": "clip-08",
+      "source": "output/clips/clip-08.mp4",
+      "source_in_seconds": 0,
+      "source_out_seconds": 10,
+      "output_start_seconds": 68.5,
+      "output_end_seconds": 78.5
+    },
+    {
+      "id": "clip-09",
+      "source": "output/clips/clip-09.mp4",
+      "source_in_seconds": 0,
+      "source_out_seconds": 10,
+      "output_start_seconds": 78.5,
+      "output_end_seconds": 88.5
+    }
+  ]
+}

@@ -298,6 +298,16 @@ def main() -> int:
         print(json.dumps({"project": str(root), "jobs": plan, "will_assemble": not args.no_assemble}, ensure_ascii=False, indent=2))
         return 0
 
+    if jobs_doc.get("submission_enabled") is False or manifest.get("submission_enabled") is False:
+        raise SystemExit("Paid submission is disabled for this project. Review authorization and enable a private working copy explicitly; --dry-run remains available.")
+    if any(job.get("submission_enabled") is False for job in jobs):
+        raise SystemExit("One or more jobs disable paid submission; no jobs were submitted.")
+    existing_state_path = root / "render-state.json"
+    if existing_state_path.is_file():
+        existing_state = read_json(existing_state_path)
+        if any(entry.get("task_id") for entry in existing_state.get("jobs", []) if isinstance(entry, dict)):
+            raise SystemExit("Existing provider tasks found. Query/download those tasks or prepare reviewed stage projects instead of resubmitting and risking duplicate charges.")
+
     token = os.environ.get("METASO_API_KEY")
     if not token:
         raise SystemExit("METASO_API_KEY is not set. Obtain a key at https://metaso.cn/minimax-h3 and configure it as an environment variable; never store it in the project.")

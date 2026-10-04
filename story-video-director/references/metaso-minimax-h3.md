@@ -173,6 +173,8 @@ After the user explicitly authorizes paid generation and `METASO_API_KEY` is con
 python3 story-video-director/scripts/metaso_h3_video.py /absolute/path/to/project
 ```
 
+The renderer honors explicit `submission_enabled: false` at project/job level for paid execution (dry-run is still allowed). It also refuses to overwrite state containing existing task IDs: inspect/query the original tasks or prepare independent stage projects, rather than rerunning the whole project. The script does not implement resume.
+
 The script submits jobs sequentially by default to reduce uncontrolled spending, polls until completion, downloads every successful clip, normalizes them with FFmpeg, and assembles `output/final.mp4`. If a provider clip has no audio stream, normalization adds silence so multi-clip assembly remains reliable; this does not fabricate requested dialogue or sound.
 
 Use `--no-assemble` to download individual clips only. Use `--poll-seconds` to change the polling interval. Do not decrease polling aggressively.

@@ -1,0 +1,88 @@
+{
+  "model": "gpt-image-2",
+  "provider": "user_local_cli_proxy",
+  "selected_assets": [
+    {
+      "path": "assets/characters/master-identity.png",
+      "width": 1536,
+      "height": 1024,
+      "visual_review": "reviewed",
+      "scope": "still identity, costume, composition; video motion and lip sync not verified"
+    },
+    {
+      "path": "assets/characters/wang-identity.png",
+      "width": 1536,
+      "height": 1024,
+      "visual_review": "reviewed",
+      "scope": "still identity, costume, composition; video motion and lip sync not verified"
+    },
+    {
+      "path": "assets/characters/wife-identity.png",
+      "width": 1774,
+      "height": 887,
+      "visual_review": "reviewed",
+      "scope": "still identity, costume, composition; video motion and lip sync not verified"
+    },
+    {
+      "path": "assets/locations/home-room.png",
+      "width": 1672,
+      "height": 941,
+      "visual_review": "reviewed",
+      "scope": "still identity, costume, composition; video motion and lip sync not verified"
+    },
+    {
+      "path": "assets/locations/mountain-yard.png",
+      "width": 1672,
+      "height": 941,
+      "visual_review": "reviewed",
+      "scope": "still identity, costume, composition; video motion and lip sync not verified"
+    },
+    {
+      "path": "assets/locations/night-room.png",
+      "width": 1536,
+      "height": 1024,
+      "visual_review": "reviewed",
+      "scope": "still identity, costume, composition; video motion and lip sync not verified"
+    },
+    {
+      "path": "assets/shots/shot-01-arrival.png",
+      "width": 1672,
+      "height": 941,
+      "visual_review": "reviewed",
+      "scope": "still identity, costume, composition; video motion and lip sync not verified"
+    },
+    {
+      "path": "assets/shots/shot-06-wall-success.png",
+      "width": 1672,
+      "height": 941,
+      "visual_review": "reviewed",
+      "scope": "still identity, costume, composition; video motion and lip sync not verified"
+    },
+    {
+      "path": "assets/shots/shot-06-wall-test.png",
+      "width": 1672,
+      "height": 941,
+      "visual_review": "reviewed",
+      "scope": "still identity, costume, composition; video motion and lip sync not verified"
+    },
+    {
+      "path": "assets/shots/shot-08-impact.png",
+      "width": 1671,
+      "height": 941,
+      "visual_review": "reviewed",
+      "scope": "still identity, costume, composition; video motion and lip sync not verified"
+    },
+    {
+      "path": "assets/shots/shot-09-final.png",
+      "width": 1536,
+      "height": 1024,
+      "visual_review": "reviewed",
+      "scope": "still identity, costume, composition; video motion and lip sync not verified"
+    }
+  ],
+  "corrections": [
+    "Removed unrequested cat from bedroom location",
+    "Regenerated rejected wall preparation as plain two-person staging"
+  ],
+  "video_rendered": false
+}
