@@ -76,7 +76,7 @@ Declare every identity that appears in more than one clip under `recurring_ident
       "duration_seconds": 10,
       "aspect_ratio": "16:9",
       "fps": 24,
-      "resolution": "2K",
+      "resolution": "768P",
       "prompt_file": "prompts/clip-01.md",
       "references": [
         {"type": "image", "path": "assets/shots/clip-01-first-frame.png", "role": "first_frame", "slot": 1}
@@ -85,6 +85,8 @@ Declare every identity that appears in more than one clip under `recurring_ident
   ]
 }
 ```
+
+The resolution shown is an example: honor the user’s selected resolution and provider-supported values; do not inherit higher-cost settings from example jobs. Before paid submission, report planned clip count, total generated duration, resolution and estimated cost, separately from actual billing.
 
 Do not include provider credentials. A future adapter may translate this manifest into an API request. Keep reference labels and retention relationships aligned with the H3 prompting guide. `master_audio` is required when sound spans clips; it records the one timeline used for assembly, not a per-clip replacement.
 
@@ -131,3 +133,7 @@ The renderer writes non-secret execution state to `render-state.json`, downloade
 ## Multi-clip edit contract
 
 For multiple clips, require `02-continuity-plan.md` with one record for every adjacent pair; follow [continuity-and-edit-design.md](continuity-and-edit-design.md). This document holds cut motivation, state/motion handoff, picture and sound strategy, edit points, actual-frame provenance, and boundary QA status. The existing JSON validator does not validate this editorial document: review it explicitly. `depends_on` and continuity metadata do not by themselves implement runtime scheduling or editing. Planned master audio is not automatically mixed by the stock renderer. Use the staged rendering and explicit edit workflow in that guide when needed.
+
+## Prop-dependent scene additions
+
+For fragile manipulation, ignition, breakage or persistent debris, include `prop-state-ledger.json` and `keyframe-plan.md` per `prop-action-continuity.md`. These documents specify object identities, sources, hands, contact, state changes, destinations, floor layouts, temporal reference roles and consumers. The existing structural validator does not validate their physical correctness; audit them and actual footage explicitly.
